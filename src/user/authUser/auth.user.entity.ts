@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { MyTeamUser } from '../myTeam/user.myTeam.entity';
-import { UserGroup } from '../usergroup/user.usergroup.entity';
+import { UserGroupEntity } from '../usergroup/user.usergroup.entity';
 
 @Entity({name: 'auth_user_entity'})
 export class AuthUserEntity {
@@ -39,9 +39,8 @@ export class AuthUserEntity {
     myTeamUsers: MyTeamUser | null
     
 
-    @OneToMany(() => UserGroup, (userGroup) => userGroup.user)
-    userGroup: UserGroup[]
-    
+    @OneToMany(() => UserGroupEntity, (userGroup) => userGroup.user)
+    userGroup: UserGroupEntity[]
    
     @Column({ default: false })
     isVerified: boolean // Flag to indicate if the user is verified
