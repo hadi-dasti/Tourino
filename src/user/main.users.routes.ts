@@ -7,6 +7,7 @@ import myTeamUserRouter from './myTeam/user.myTeam.router';
 import packageRouter from './packages/user.package.router';
 import programProposalRouter from './programProposal/user.programpropoasl.router';
 import userGroupRouter from './usergroup/user.usergroup.router';
+import userFavoritesRouter from './favorites/user.favorites.router';
 
 const router: Router = Router();
 
@@ -23,6 +24,8 @@ router.use('/package', packageRouter);
 router.use('/program-proposal', programProposalRouter);
 
 router.use('/usergroup', userGroupRouter);
+
+router.use('/favorites', userFavoritesRouter);
 
 
 export default router;
