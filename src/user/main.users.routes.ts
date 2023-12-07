@@ -10,6 +10,7 @@ import programProposalRouter from './programProposal/user.programpropoasl.router
 import userGroupRouter from './usergroup/user.usergroup.router';
 import userFavoritesRouter from './favorites/user.favorites.router';
 import programSearchRouter from './program_search/user.programsearh.router';
+import showNewsUserRouter from './shownewsUser/user.showNews.router';
 
 const router: Router = Router();
 
@@ -31,6 +32,8 @@ router.use('/usergroup', userGroupRouter);
 router.use('/favorites', userFavoritesRouter);
 
 router.use('/searhc-program', programSearchRouter);
+
+router.use('/show-news',showNewsUserRouter)
 
 
 export default router;
