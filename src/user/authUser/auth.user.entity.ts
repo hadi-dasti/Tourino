@@ -1,8 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from 'typeorm';
-import { MyTeamUser } from '../myTeam/user.myTeam.entity';
-import { UserGroupEntity } from '../usergroup/user.usergroup.entity';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, TableInheritance, UpdateDateColumn} from 'typeorm';
+// import { MyTeamUser } from '../myTeam/user.myTeam.entity';
+// import { UserGroupEntity } from '../usergroup/user.usergroup.entity';
 
-@Entity({name: 'auth_user_entity'})
+@Entity({ name: 'auth_user_entity' })
+@TableInheritance({ column: { type: "varchar"} })
 export class AuthUserEntity {
     @PrimaryGeneratedColumn('uuid')
     id: string  // Unique identifier for the user
@@ -13,34 +14,34 @@ export class AuthUserEntity {
     @Column()
     mobileNumber: string  // Mobile number of the user
 
-    @Column({nullable:true})
-    nationalCode: string
+    // @Column({nullable:true})
+    // nationalCode: string
 
-    @Column({nullable:true})
-    password: string
+    // @Column({nullable:true})
+    // password: string
 
-    @Column({nullable:true})
-    fatherName: string
+    // @Column({nullable:true})
+    // fatherName: string
 
-    @Column({ nullable: true })
-    bloodCategory: string
+    // @Column({ nullable: true })
+    // bloodCategory: string
     
-    @Column({nullable:true})
-    city:string
+    // @Column({nullable:true})
+    // city:string
 
-    @Column({ type: 'bytea', nullable: true })
-    image: Buffer
+    // @Column({ type: 'bytea', nullable: true })
+    // image: Buffer
  
 
     @Column({nullable:true})
     otpMobileCode: string  // One-time password for mobile verification
 
-    @OneToMany(() => MyTeamUser, myTeamUser => myTeamUser.user)
-    myTeamUsers: MyTeamUser | null
+    // @OneToMany(() => MyTeamUser, myTeamUser => myTeamUser.user)
+    // myTeamUsers: MyTeamUser | null
     
 
-    @OneToMany(() => UserGroupEntity, (userGroup) => userGroup.user)
-    userGroup: UserGroupEntity[]
+    // @OneToMany(() => UserGroupEntity, (userGroup) => userGroup.user)
+    // userGroup: UserGroupEntity[]
    
     @Column({ default: false })
     isVerified: boolean // Flag to indicate if the user is verified

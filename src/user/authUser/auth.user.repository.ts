@@ -1,7 +1,9 @@
 import { AppDataSource } from '../../dataSource';
 import { AuthUserEntity } from './auth.user.entity';
-import { AuthUserCredentialsDto, VerifyUserOtpMobileCredentialsDto } from './auth.user.credentials.dto';
-import { generateOtp } from '../utils/otp.user.code';
+import { AuthUserCredentialsDto, VerifyUserOtpMobileCredentialsDto } from './auth.user.dto';
+import { generateOtp } from './auth.user.utils.codeotp';
+
+
 
 export const authUserRepository = AppDataSource.getRepository(AuthUserEntity).extend({
     /**
@@ -57,7 +59,7 @@ export const authUserRepository = AppDataSource.getRepository(AuthUserEntity).ex
                 throw new Error('User not found')
             }
             // set hotfix error
-            if (user.otpMobileCode  !== otpCode) {
+            if (user.otpMobileCode !== otpCode) {
                 console.log('Invalid OTP code');
             }
 

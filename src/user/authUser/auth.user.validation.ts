@@ -49,7 +49,7 @@ export const authUserValidation = (req: Request, res: Response, next: NextFuncti
 export const verifyCodeOtp = (req: Request, res: Response, next: NextFunction) => {
     // Define the validation schema for the OTP verification code 
     const schemaVerifyCode = Joi.object({
-        otpCode: Joi.string()
+        otpMobileCode: Joi.string()
             .length(6)
             .pattern(/^\d+$/)
             .required()

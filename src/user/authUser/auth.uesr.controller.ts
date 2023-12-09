@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthUserCredentialsDto,VerifyUserOtpMobileCredentialsDto } from './auth.user.credentials.dto';
+import { AuthUserCredentialsDto,VerifyUserOtpMobileCredentialsDto } from './auth.user.dto';
 import { authUserRepository } from './auth.user.repository';
 
 

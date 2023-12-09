@@ -10,7 +10,7 @@ const authUserController = new AuthUserController();
 router.post('/register', authUserValidation, authUserController.registerUserController.bind(authUserController));
 
 // Route for OTP verification
-router.post('/verify', verifyCodeOtp, authUserController.verifyCodeOtpcontroller.bind(authUserController));
+router.post('/verify',verifyCodeOtp, authUserController.verifyCodeOtpcontroller.bind(authUserController));
 
 
 export default router;
