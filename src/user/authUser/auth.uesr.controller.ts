@@ -4,6 +4,7 @@ import { authUserRepository } from './auth.user.repository';
 
 
 export class AuthUserController{
+    
     private readonly authUserRepository = authUserRepository;
     
      /**

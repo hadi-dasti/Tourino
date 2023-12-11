@@ -16,6 +16,7 @@ export const authUserRepository = AppDataSource.getRepository(AuthUserEntity).ex
     async createAuthUser(authUserCredentialsDto: AuthUserCredentialsDto):Promise<void> {
 
         const { fullName, mobileNumber } = authUserCredentialsDto;
+        
         let otpMobileCode = generateOtp(6);
 
         try {

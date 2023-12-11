@@ -1,9 +1,10 @@
 // Import the required modules
 import express, { Application } from 'express';
-import userRouter from './user/main.users.routes';
 import morgan from 'morgan';
 import { join } from 'path';
 
+import userRouter from './user/main.users.routes';
+import clientRouter from './client/main.client.routes';
 
 
 // Create a new Express application
@@ -26,6 +27,9 @@ app.use('/movie', express.static(join(__dirname, 'upload-movie')));
 
 // Mount the user router at the /api/user endpoint
 app.use('/api/v1', userRouter);
+
+// Mount the client router at the /api/user endpoint
+app.use('/api/v1', clientRouter);
 
 
 export default app;
