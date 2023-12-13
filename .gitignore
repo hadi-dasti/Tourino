@@ -4,4 +4,5 @@ dist
 package-lock.json
 .prettierrc
 tsconfig.build.json
-.vscode/
+**/.vscode/
+
