@@ -27,7 +27,7 @@ export class AuthUserEntity{
     @Column({ default: false })
     isVerified: boolean // Flag to indicate if the user is verified
 
-     @CreateDateColumn({type:"timestamp" , default :()=> "CURRENT_TIMESTAMP"})
+    @CreateDateColumn({type:"timestamp" , default :()=> "CURRENT_TIMESTAMP"})
     createdAt: Date; // Timestamp of when the user was created
 
     @UpdateDateColumn({type:"timestamp", default:()=>"CURRENT_TIMESTAMP"})

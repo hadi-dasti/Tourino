@@ -37,7 +37,6 @@ export class RegisterClientService{
 
         try {
             
-            
             const salt = await bcrypt.genSalt();
             const hashedPassword = await bcrypt.hash(password, salt );
 
@@ -61,7 +60,7 @@ export class RegisterClientService{
             });
 
             if (!newRegisterClient) {
-               console.log('error in service')
+               console.log('error register client in service')
             }
 
             return await this.registerClientEntity.save(newRegisterClient);
