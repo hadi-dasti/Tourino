@@ -6,6 +6,8 @@ import { PackageEntity } from './user/packages/user.package.entity';
 import { ProgramProposalEntity } from './user/programProposal/user.programproposal.entity';
 import { UserGroupEntity } from './user/usergroup/user.usergroup.entity';
 import { ClientRegisterEntity } from './client/register/client.register.entity';
+import { AuthAdminEntity } from './admin/auth/auth.admin.entity';
+
 
    // Create a new DataSource instance
 export const AppDataSource = new DataSource({
@@ -15,13 +17,16 @@ export const AppDataSource = new DataSource({
    username: process.env.DB_USERNAME as string,
    password: process.env.DB_PASSWORD as string,
    database: process.env.DB_NAME as string,
-   entities: [
-      AuthUserEntity,
-      MyTeamUser,
-      PackageEntity,
-      ProgramProposalEntity,
-      UserGroupEntity,
-      ClientRegisterEntity],
+   entities:
+      [
+         AuthUserEntity,
+         MyTeamUser,
+         PackageEntity,
+         ProgramProposalEntity,
+         UserGroupEntity,
+         ClientRegisterEntity,
+         AuthAdminEntity
+      ],
    synchronize: true,
    logging: false
 });

@@ -5,7 +5,7 @@ import { join } from 'path';
 
 import userRouter from './user/main.users.routes';
 import clientRouter from './client/main.client.routes';
-
+import adminRouter from './admin/main.admin.routes';
 
 // Create a new Express application
 const app: Application = express();
@@ -30,6 +30,9 @@ app.use('/api/v1', userRouter);
 
 // Mount the client router at the /api/user endpoint
 app.use('/api/v1', clientRouter);
+
+// Mount the client router at the /api/user endpoint
+app.use('/api/v1', adminRouter);
 
 
 export default app;
