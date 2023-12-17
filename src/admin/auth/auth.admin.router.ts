@@ -12,5 +12,7 @@ const authAdminController = new AuthAdminController();
 
 router.post('/register', authAdminController.registerAdmin.bind(authAdminController));
 
+router.post('/login', authAdminController.loginAdmin.bind(authAdminController));
+
 
 export default router
