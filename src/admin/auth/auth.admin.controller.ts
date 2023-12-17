@@ -26,4 +26,9 @@ export class AuthAdminController{
             console.log(err)
         }
     }
+
+    @Post('/login')
+    loginAdmin(@Body() authAdminDto: AuthAdminDto) {
+        this.authAdminService.loginAdmin(authAdminDto)
+    }
 }
