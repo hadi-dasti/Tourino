@@ -1,7 +1,7 @@
 import { AuthAdminDto } from './auth.admin.dto';
 import { AuthAdminEntity } from './auth.admin.entity';
 import { AppDataSource } from '../../dataSource';
-
+import * as bcrypt from 'bcryptjs';
 
 // Repository for managing AuthAdminEntity
 export const AuthAdminRepository = AppDataSource.getRepository(AuthAdminEntity).extend({
@@ -9,12 +9,15 @@ export const AuthAdminRepository = AppDataSource.getRepository(AuthAdminEntity).
     // Registers a new admin with the provided details
 
     async registerAdmin(authAdminDto: AuthAdminDto): Promise<AuthAdminEntity> {
+
         const { adminName, password, mobileNumber, email } = authAdminDto;
 
         try {
+            const hashedPassword = await bcrypt.hash(password, 10);
+
             const newAdmin = this.create({
                 adminName,
-                password,
+                password :hashedPassword,
                 mobileNumber,
                 email,
             });
@@ -27,14 +30,16 @@ export const AuthAdminRepository = AppDataSource.getRepository(AuthAdminEntity).
         }
     },
 
-    async loginAdmin(authAdminDto: AuthAdminDto): Promise<AuthAdminEntity | undefined > {
+    async loginAdmin(authAdminDto: AuthAdminDto): Promise<AuthAdminEntity | undefined> {
       
         const { adminName, password } = authAdminDto;
 
         try {
         
             const checkNameAdmin = await this.findOne({
-                where: { adminName },
+                where: {
+                    adminName
+                }
             });
 
             if (!checkNameAdmin) {
@@ -42,18 +47,19 @@ export const AuthAdminRepository = AppDataSource.getRepository(AuthAdminEntity).
                 return undefined;
             };
 
-            const isPasswordValid = await checkNameAdmin.comparePassword(password);
+            const isPasswordValid = await bcrypt.compare(password, checkNameAdmin?.password);
             
             if (!isPasswordValid) {
                 console.log('Error: Incorrect password');
-                return undefined;
+                 return undefined
             };
 
+            
             return checkNameAdmin!;
 
         } catch (err) {
             console.error('Error occurred while logging in admin:', err);
-            throw new Error('Failed to login admin');
+            return undefined
         }
     }
 });

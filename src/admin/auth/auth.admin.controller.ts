@@ -38,6 +38,7 @@ export class AuthAdminController {
     const authAdminDto: AuthAdminDto = req.body;
 
     try {
+
       const adminLogin = await this.authAdminRepository.loginAdmin(authAdminDto);
 
       if (!adminLogin) {

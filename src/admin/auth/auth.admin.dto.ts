@@ -13,5 +13,7 @@ export class AuthAdminDto{
     mobileNumber: string // Admin's mobile number
 
     
-    email:string // Admin's email address
+    email: string // Admin's email address
+    
+    codeOtp:string 
 }
