@@ -6,4 +6,5 @@ export class AuthAdminDto{
     password: string
     mobileNumber: string
     email: string
+    codeOtp: string;
 }
