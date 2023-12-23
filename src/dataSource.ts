@@ -8,6 +8,8 @@ import { UserGroupEntity } from './user/usergroup/user.usergroup.entity';
 import { ClientRegisterEntity } from './client/register/client.register.entity';
 import { AuthAdminEntity } from './admin/auth/auth.admin.entity';
 import { DashboardLoginEntity } from './admin/dashboard/dashboard-login/dashboard.login.entity';
+import { ProgramManagementEntity } from './admin/dashboard/program-management/program.management.entity';
+
 
    // Create a new DataSource instance
 export const AppDataSource = new DataSource({
@@ -26,7 +28,8 @@ export const AppDataSource = new DataSource({
          UserGroupEntity,
          ClientRegisterEntity,
          AuthAdminEntity,
-         DashboardLoginEntity 
+         DashboardLoginEntity,
+         ProgramManagementEntity
       ],
    synchronize: true,
    logging: false
