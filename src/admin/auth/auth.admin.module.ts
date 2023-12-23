@@ -3,16 +3,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthAdminEntity } from './auth.admin.entity';
 import { AuthAdminService } from './auth.admin.service';
 import { AuthAdminController } from './auth.admin.controller';
-import { RecoveryPasswordMobileModule } from './recovery-password-mobile/recovery.password.mobile.module';
+import { RecoveryPasswordMobileController } from './recovery-password-mobile/recovery.password.mobile.controller';
+import { RecoveryPasswordMobileService } from './recovery-password-mobile/recovery.password.mobile.service';
 
 @Module({
   // Import the TypeOrmModule with the AuthAdminEntity for feature
-  imports: [RecoveryPasswordMobileModule,
-    TypeOrmModule.forFeature([AuthAdminEntity]),  
-  ],
+  imports: [TypeOrmModule.forFeature([AuthAdminEntity])],
   // Provide the AuthAdminService as a provider
-  providers: [AuthAdminService],
+  providers: [AuthAdminService, RecoveryPasswordMobileService],
   // Use the AuthAdminController as a controller
-  controllers: [AuthAdminController],
+  controllers: [AuthAdminController, RecoveryPasswordMobileController],
 })
 export class authAminModule {}

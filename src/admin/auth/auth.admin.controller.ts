@@ -1,34 +1,53 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Post,
+} from '@nestjs/common';
 import { AuthAdminService } from './auth.admin.service';
-import { AuthAdminDto} from './auth.admin.dto';
-
+import { AuthAdminDto } from './auth.admin.dto';
+import { AuthAdminEntity } from './auth.admin.entity';
 
 @Controller('/api/v1/admin/auth-admin')
-export class AuthAdminController{
-    constructor(
-        private authAdminService: AuthAdminService
-    ){}
-    
-    @Post('/register')
-    registerAdmin(@Body() authAdminDto: AuthAdminDto) {
-        
-        try {
-            const buildAdmin = this.authAdminService.registerAdmin(authAdminDto);
+export class AuthAdminController {
+  constructor(private authAdminService: AuthAdminService) {}
 
-            if (!buildAdmin) {
-                console.log('Error not Foud Admin')
-            }
+  // Endpoint to register a new admin
+  @Post('/register')
+  registerAdmin(@Body() authAdminDto: AuthAdminDto): Promise<AuthAdminEntity> {
+    try {
+      const buildAdmin = this.authAdminService.registerAdmin(authAdminDto);
 
-            return buildAdmin;
+      if (!buildAdmin) {
+        throw new HttpException('Admin not found', HttpStatus.NOT_FOUND);
+      }
 
-        } catch (err) {
-
-            console.log(err)
-        }
+      return buildAdmin;
+    } catch (err) {
+      console.log(err);
+      throw new HttpException(
+        'Internal Server Error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
+  }
 
-    @Post('/login')
-    loginAdmin(@Body() authAdminDto: AuthAdminDto) {
-        this.authAdminService.loginAdmin(authAdminDto)
+  // Endpoint to login an admin
+  @Post('/login')
+  async loginAdmin(
+    @Body() authAdminDto: AuthAdminDto,
+  ): Promise<AuthAdminEntity> {
+    try {
+      const authenticatedAdmin =
+        await this.authAdminService.loginAdmin(authAdminDto);
+      return authenticatedAdmin;
+    } catch (err) {
+      console.error(err);
+      throw new HttpException(
+        'Internal Server Error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
+  }
 }
