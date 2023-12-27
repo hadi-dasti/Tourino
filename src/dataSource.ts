@@ -5,7 +5,7 @@ import { MyTeamUser } from './user/myTeam/user.myTeam.entity';
 import { PackageEntity } from './user/packages/user.package.entity';
 import { ProgramProposalEntity } from './user/programProposal/user.programproposal.entity';
 import { UserGroupEntity } from './user/usergroup/user.usergroup.entity';
-import { ClientRegisterEntity } from './client/register/client.register.entity';
+import { ClientAuthEntity } from './client/client-auth/client.auth.entity';
 import { AuthAdminEntity } from './admin/auth/auth.admin.entity';
 import { DashboardLoginEntity } from './admin/dashboard/dashboard-login/dashboard.login.entity';
 import { ProgramManagementEntity } from './admin/dashboard/program-management/program.management.entity';
@@ -26,7 +26,7 @@ export const AppDataSource = new DataSource({
          PackageEntity,
          ProgramProposalEntity,
          UserGroupEntity,
-         ClientRegisterEntity,
+         ClientAuthEntity,
          AuthAdminEntity,
          DashboardLoginEntity,
          ProgramManagementEntity

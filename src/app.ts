@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import { join } from 'path';
 
 import userRouter from './user/main.users.routes';
-import clientRouter from './client/main.client.routes';
+import clientRouter from './client/client.main.routes';
 import adminRouter from './admin/main.admin.routes';
 
 // Create a new Express application
