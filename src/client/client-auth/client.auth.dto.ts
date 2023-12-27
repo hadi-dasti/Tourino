@@ -1,6 +1,6 @@
 
 
-export class ClientRegisterDto{
+export class ClientAuthDto{
    
     managerFirstName: string
     
@@ -10,7 +10,6 @@ export class ClientRegisterDto{
     
     dateOfBirth: string
     
-  
     email: string
    
     password: string
@@ -18,7 +17,6 @@ export class ClientRegisterDto{
     fatherName: string
     
     nameOfCenter: string
-
 
     managerMobileNumber: string
     

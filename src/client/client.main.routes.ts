@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 // Import the routers for each endpoint clients
-import registerClientRouter from './register/client.register.router';
+import registerClientRouter from './client-auth/client.auth.routes';
 
 const router: Router = Router();
 

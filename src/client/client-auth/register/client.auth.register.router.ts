@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import {ClientRegisterController} from './client.register.controller'
+import {ClientRegisterController} from './client.auth.register.controller'
 
 const clientRegisterController = new ClientRegisterController();
 
