@@ -13,7 +13,7 @@ import { AuthAdminDto } from '../auth.admin.dto';
 
 
 
-@Controller('/api/v1/admin/auth-admin/recovery-password-password')
+@Controller('/api/v1/admin/auth-admin/recovery-password')
 export class RecoveryPasswordMobileController {
   constructor(
     private RecoveryPasswordMobileService: RecoveryPasswordMobileService,
@@ -48,7 +48,7 @@ export class RecoveryPasswordMobileController {
       await this.RecoveryPasswordMobileService.verifyMobileAdmin(authAdminDto);
     } catch (err) {
       throw new InternalServerErrorException(
-        'Verify Password failed')
+        'Verify codeOtp failed')
     }
   }
 

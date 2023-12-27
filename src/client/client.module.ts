@@ -1,8 +1,11 @@
 import { Module } from "@nestjs/common";
-import { RegisterClientModule } from "./regitster_client/registerClient.module";
+import { AuthClientModule } from './auth-client/auth.client.module';
+
+
+
 
 @Module({
-    imports:[RegisterClientModule]
+    imports:[AuthClientModule]
 })
 
 export class ClientModule{}
