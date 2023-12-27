@@ -1,6 +1,6 @@
 
 
-export class RegiterClientDto{
+export class AuthClientDto{
     managerFirstName: string
     managerLastName: string
     nationalCode: string
@@ -15,6 +15,7 @@ export class RegiterClientDto{
     address: string
     landLinePhone: string
     socialNetworks: string
+   readonly codeOtp: string
     website: string
     centerLogo:string
 }

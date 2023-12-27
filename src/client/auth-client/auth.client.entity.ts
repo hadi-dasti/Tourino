@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class RegisterClientEntity{
+export class AuthClientEntity{
     @PrimaryGeneratedColumn('uuid')
     id: string
     
@@ -51,7 +51,10 @@ export class RegisterClientEntity{
     website: string
     
     @Column()
-    centerLogo:string
+    centerLogo: string
+    
+    @Column({nullable : true})
+    codeOtp: string
 
     @CreateDateColumn({type:"timestamp" , default :()=> "CURRENT_TIMESTAMP"})
     createdAt: Date; // Timestamp of when the user was created
