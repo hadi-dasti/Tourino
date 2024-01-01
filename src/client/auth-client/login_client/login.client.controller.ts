@@ -17,7 +17,7 @@ export class LoginClientController {
   @Post('/')
   async loginClient(@Body() authClientDto: AuthClientDto): Promise<void> {
     try {
-        await this.loginClientService.loginClient(authClientDto);
+      await this.loginClientService.loginClient(authClientDto);
     } catch (err) {
       if (err instanceof NotFoundException) {
         throw new HttpException('Client not found', HttpStatus.NOT_FOUND);

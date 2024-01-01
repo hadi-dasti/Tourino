@@ -1,11 +1,9 @@
-import { Module } from "@nestjs/common";
+import { Module } from '@nestjs/common';
 import { authAminModule } from './auth/auth.admin.module';
 
-
-     // Decorate the AdminModule class with the Module decorator
+// Decorate the AdminModule class with the Module decorator
 @Module({
-    // Import the authAminModule into the AdminModule
-    imports:[authAminModule]
+  // Import the authAminModule into the AdminModule
+  imports: [authAminModule],
 })
-
-export class AdminModule{}
+export class AdminModule {}

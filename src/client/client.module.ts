@@ -1,11 +1,7 @@
-import { Module } from "@nestjs/common";
+import { Module } from '@nestjs/common';
 import { AuthClientModule } from './auth-client/auth.client.module';
 
-
-
-
 @Module({
-    imports:[AuthClientModule]
+  imports: [AuthClientModule],
 })
-
-export class ClientModule{}
+export class ClientModule {}

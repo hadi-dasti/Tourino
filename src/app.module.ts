@@ -3,15 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { ClientModule } from './client/client.module';
 import { AdminModule } from './admin/admin.module';
-import  typeOrmConfig  from './dataSource';
-
+import typeOrmConfig from './dataSource';
 
 @Module({
-  imports: [ 
+  imports: [
     TypeOrmModule.forRoot(typeOrmConfig),
     UserModule,
     ClientModule,
-    AdminModule
-  ]
+    AdminModule,
+  ],
 })
-export class AppModule { }
+export class AppModule {}

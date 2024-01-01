@@ -75,8 +75,8 @@ export class RecoveryPasswordMobileService {
         'Failed to verify mobile managerClient recovery OTP',
       );
     }
-    }
-    
+  }
+
   public async changePasswordMobileClient(
     authClientDto: AuthClientDto,
     id: string,

@@ -9,7 +9,7 @@ const typeOrmConfig: TypeOrmModuleOptions = {
   database: 'torino',
   entities: [],
   synchronize: true, // For development, set to false in production
-  autoLoadEntities:true
+  autoLoadEntities: true,
 };
 
-export default typeOrmConfig ;
+export default typeOrmConfig;

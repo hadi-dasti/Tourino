@@ -11,8 +11,6 @@ import { RecoveryPasswordMobileService } from './recovery.password.mobile.servic
 import { AuthAdminEntity } from '../auth.admin.entity';
 import { AuthAdminDto } from '../auth.admin.dto';
 
-
-
 @Controller('/api/v1/admin/auth-admin/recovery-password')
 export class RecoveryPasswordMobileController {
   constructor(
@@ -38,7 +36,9 @@ export class RecoveryPasswordMobileController {
       return newInitialMobileAdmin;
     } catch (err) {
       console.log(err);
-      throw new InternalServerErrorException('Failed to initialize mobile admin recovery process');
+      throw new InternalServerErrorException(
+        'Failed to initialize mobile admin recovery process',
+      );
     }
   }
 
@@ -47,8 +47,7 @@ export class RecoveryPasswordMobileController {
     try {
       await this.RecoveryPasswordMobileService.verifyMobileAdmin(authAdminDto);
     } catch (err) {
-      throw new InternalServerErrorException(
-        'Verify codeOtp failed')
+      throw new InternalServerErrorException('Verify codeOtp failed');
     }
   }
 

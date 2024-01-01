@@ -23,7 +23,7 @@ export class AuthAdminEntity {
   @Column()
   email: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   codeOtp: string;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

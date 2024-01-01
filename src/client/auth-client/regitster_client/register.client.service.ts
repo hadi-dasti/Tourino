@@ -70,8 +70,7 @@ export class RegisterClientService {
         );
       }
 
-        return savedClient;
-        
+      return savedClient;
     } catch (err) {
       // Handle any errors that occur during the registration process
       console.error('Error registering client:', err);

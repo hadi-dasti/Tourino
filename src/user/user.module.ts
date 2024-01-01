@@ -1,10 +1,8 @@
-import { Module } from "@nestjs/common";
-import { UserAuthModule } from './auth/authuser.module';
-
+import { Module } from '@nestjs/common';
+import { AuthUserModule } from './auth/authuser.module';
+import { GroupSerachModule } from './group-search/group.search.module';
 
 @Module({
-    imports:[UserAuthModule]
+  imports: [AuthUserModule, GroupSerachModule],
 })
-
-
-export class UserModule{}
+export class UserModule {}

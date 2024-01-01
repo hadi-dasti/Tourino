@@ -42,7 +42,6 @@ export class RecoveryPasswordMobileClientController {
     }
   }
 
-    
   @Post('/verify-codeOtp')
   public async verifyCodeOtpMobileClient(
     @Body() authClientDto: AuthClientDto,
