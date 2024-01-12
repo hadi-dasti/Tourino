@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AuthUserModule } from './auth/authuser.module';
-import { GroupSerachModule } from './group-search/group.search.module';
+import { GroupSearchCodeModule } from './group-search/group.search.code.module';
+
 
 @Module({
-  imports: [AuthUserModule, GroupSerachModule],
+  imports:[
+    AuthUserModule,
+    GroupSearchCodeModule,
+  ]
 })
 export class UserModule {}

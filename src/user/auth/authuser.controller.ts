@@ -3,11 +3,11 @@ import { AuthUserService } from './authuser.service';
 import { AuthUserEntity } from './authuser.entity';
 import { AuthUserDto } from './authuser.dto';
 
-@Controller('/api/v1/user/auth')
+@Controller('api/v1/user/auth/singup')
 export class AuthUserController {
   constructor(private authUserService: AuthUserService) {}
 
-  @Post('/signup')
+  @Post('')
   async singUp(@Body() authUserDto: AuthUserDto): Promise<AuthUserEntity> {
     return this.authUserService.singUp(authUserDto);
   }
