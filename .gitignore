@@ -1,8 +1,0 @@
-node_modules
-dist
-.eslintrc.js
-package-lock.json
-.prettierrc
-tsconfig.build.json
-**/.vscode/
-
