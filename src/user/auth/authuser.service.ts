@@ -12,7 +12,7 @@ export class AuthUserService {
     private authUserRepository: Repository<AuthUserEntity>,
   ) {}
 
-  async singUp(authUserDto: AuthUserDto): Promise<AuthUserEntity> {
+  async singUp(authUserDto: AuthUserDto):Promise< AuthUserEntity>{
     const { fullName, mobileNumber } = authUserDto;
 
     try {
@@ -36,6 +36,7 @@ export class AuthUserService {
       newUser.isVerified = false;
 
       return await this.authUserRepository.save(newUser);
+      
     } catch (err) {
       console.log(err);
     }
@@ -43,13 +44,9 @@ export class AuthUserService {
 
   async verifyUser(id: string, otp: string): Promise<AuthUserEntity> {
     try {
-      const findUserId = await this.authUserRepository.findOneBy({ id });
+      const findUserId  = await this.authUserRepository.findOneBy({id});
 
-      if (!findUserId) {
-        console.log('User not found');
-      }
-
-      if (findUserId.codeOtp !== otp) {
+      if (findUserId?.codeOtp !== otp) {
         console.log('OTP does not match');
       }
 
@@ -57,8 +54,9 @@ export class AuthUserService {
       findUserId.isVerified = true;
 
       return await this.authUserRepository.save(findUserId);
+
     } catch (err) {
-      console.log(err);
+      return err
     }
   }
 }

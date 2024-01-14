@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { ClientModule } from './client/client.module';
 import { AdminModule } from './admin/admin.module';
@@ -13,4 +14,4 @@ import typeOrmConfig from './dataSource';
     AdminModule,
   ],
 })
-export class AppModule {}
+export class AppTourinoModule {}
