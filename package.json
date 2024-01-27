@@ -28,6 +28,7 @@
     "@nestjs/typeorm": "^10.0.1",
     "@types/babel__core": "^7.20.5",
     "bcrypt": "^5.1.1",
+    "class-validator": "^0.14.1",
     "express": "^4.18.2",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
