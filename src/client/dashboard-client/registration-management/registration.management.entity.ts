@@ -6,12 +6,12 @@ export class RegistrationManagementEntity {
   id: string;
 
   @Column({ type: 'varchar', length: 255 })
-  name: string;
+  names: string[];
 
   @Column({ type: "varchar", length: 255, nullable: true })
-  image: string;
+  images: string[];
 
-  @Column({type:"int", default: 0 })
+  @Column({ type: "int", default: 0 })
   registeredCount: number;
 
   @Column({type:"int", default: 0 })
