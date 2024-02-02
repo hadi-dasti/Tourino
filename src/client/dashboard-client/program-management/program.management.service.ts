@@ -72,16 +72,14 @@ export class ProgramManagementService {
 
   //get all programs
   public async getAllPrograms(): Promise<ProgramManagementEntity[]> {
-
     try {
-
       const allPrograms = await this.programRepository.find({
         select: {
           id: true,
           programName: true,
           programTime: true,
           programStatus: true,
-          price:true
+          price: true,
         },
         order: {
           programName: 'ASC',
@@ -91,14 +89,58 @@ export class ProgramManagementService {
       });
 
       if (!allPrograms.length) {
-         throw new NotFoundException('No programs found.');
+        throw new NotFoundException('No programs found.');
       }
 
       return allPrograms;
+    } catch (err) {
+      console.log(err);
+      throw new InternalServerErrorException('Failed to fetch programs.');
+    }
+  }
+
+  // update program
+  public async updateProgram(id: string, programDto: ProgramDto): Promise<any> {
+    
+    try {
+      const {
+        programName,
+        programTime,
+        programStatus,
+        price,
+        registeredPeople,
+        popularity,
+        operationIcons,
+      } = programDto;
+
+      const checkIdProgram = await this.programRepository.findOne({
+        where: { id: id }
+      });
+
+      if (!checkIdProgram) {
+        throw new Error('program not found')
+      }
+
+      const newPrograms = await this.programRepository
+        .createQueryBuilder()
+        .update(ProgramManagementEntity)
+        .set({
+          programName,
+          programTime,
+          programStatus,
+          price,
+          registeredPeople,
+          popularity,
+          operationIcons,
+        })
+        .where({ id:id})
+        .execute();
+
+      return newPrograms;
 
     } catch (err) {
-      console.log(err)
-      throw new InternalServerErrorException('Failed to fetch programs.');
+      console.error('Error updating program:', err);
+      throw new Error('Failed to update program');
     }
   }
 }
