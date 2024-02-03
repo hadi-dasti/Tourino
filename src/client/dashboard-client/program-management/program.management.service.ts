@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import {ProgramManagementEntity,ProgramStatus} from './program.maagement.entity';
+import { ProgramManagementEntity, ProgramStatus } from './program.maagement.entity';
 import { ProgramDto } from './program.management.dto';
 
 
@@ -13,7 +13,9 @@ export class ProgramManagementService {
   ) {}
 
   // add program
-  public async addProgram(programDto: ProgramDto): Promise<ProgramManagementEntity> {
+  public async addProgram(
+    programDto: ProgramDto,
+  ): Promise<ProgramManagementEntity> {
     const {
       programName,
       programTime,
@@ -101,7 +103,6 @@ export class ProgramManagementService {
 
   // update program
   public async updateProgram(id: string, programDto: ProgramDto): Promise<any> {
-    
     try {
       const {
         programName,
@@ -114,11 +115,11 @@ export class ProgramManagementService {
       } = programDto;
 
       const checkIdProgram = await this.programRepository.findOne({
-        where: { id: id }
+        where: { id: id },
       });
 
       if (!checkIdProgram) {
-        throw new Error('program not found')
+        throw new Error('program not found');
       }
 
       const newPrograms = await this.programRepository
@@ -133,14 +134,44 @@ export class ProgramManagementService {
           popularity,
           operationIcons,
         })
-        .where({ id:id})
+        .where({ id: id })
         .execute();
 
       return newPrograms;
-
     } catch (err) {
       console.error('Error updating program:', err);
       throw new Error('Failed to update program');
+    }
+  }
+
+  // delete program
+  public async deletePrograms(id: string): Promise<void> {
+    
+    try {
+      const checkIdProgram = await this.programRepository.findOne({
+        where: {
+            id:id
+          }
+      })
+      if (!checkIdProgram) {
+        throw new Error('Program not found');
+      }
+
+      const deleteProgram = await this.programRepository
+        .createQueryBuilder()
+        .delete()
+        .from(ProgramManagementEntity)
+        .where({ id: id })
+        .execute();
+      
+      if (deleteProgram.affected === 0) {
+         throw new Error('Failed to delete program');
+      }
+      console.log('Program deleted successfully');
+
+    } catch (err) {
+      console.error('Error deleting program:', err.message);
+       throw err;
     }
   }
 }
