@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Post,HttpStatus, Body, Get, HttpException, Put, Param } from "@nestjs/common";
+import { Controller, HttpCode, Post,HttpStatus, Body, Get, HttpException, Put, Param, Delete, NotFoundException } from "@nestjs/common";
 import { ProgramManagementService } from "./program.management.service";
 import { ProgramDto } from "./program.management.dto";
 import { ProgramManagementEntity } from "./program.maagement.entity";
@@ -6,9 +6,7 @@ import { ProgramManagementEntity } from "./program.maagement.entity";
 
 @Controller('/api/v1/client/dashboard/program-management')
 export class ProgramManagementController {
-  constructor(
-    private readonly programManagementService: ProgramManagementService,
-  ) {}
+  constructor( private readonly programManagementService: ProgramManagementService) {}
 
   @Post('/add-program')
   @HttpCode(HttpStatus.CREATED)
@@ -49,6 +47,16 @@ export class ProgramManagementController {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
-   }
+  }
+  
+  @Delete('/delete-program/:id')
+  async deleteProgram(@Param('id') id: string): Promise<void>{
+    try {
+      return await this.programManagementService.deletePrograms(id);
+    } catch (err) {
+
+      throw new NotFoundException('Program does not exist! ', err.message);
+    }
+  }
   
 }
