@@ -3,7 +3,7 @@ import { SituationUser } from './uesr.management.enum';
 
 @Entity()
 export class UserManagementEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()

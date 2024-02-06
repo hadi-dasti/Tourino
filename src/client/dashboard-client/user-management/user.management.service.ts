@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserManagementEntity } from './user.management.entity';
@@ -25,12 +25,8 @@ export class UserManagementService {
         
         try {
 
-            if (!situation || situation.trim() === '') {
-                throw new Error('Bad Request')
-            }
-
             if (!Object.values(SituationUser).includes(situation)) {
-                throw new Error('Invalid Values in situation')
+                throw new BadRequestException('Invalid value for situation');
             }
 
             const users = this.userManagementEntity.create({
@@ -42,17 +38,16 @@ export class UserManagementService {
                 programs,
             });
 
-            const addUser = await this.userManagementEntity.save(users);
+            const addedUser = await this.userManagementEntity.save(users);
 
-            if (!addUser) {
-                throw new Error('user not craete')
-            }
+             if (!addedUser) {
+               throw new InternalServerErrorException('Failed to create add user');
+             }
 
-            return addUser;
-
+            return addedUser;
 
         } catch (err) {
-            throw new Error('Internal Server Error');
+            throw new InternalServerErrorException('Internal Server Error');
         }
   }
 }

@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpCode, HttpStatus } from "@nestjs/common";
+import { Controller, Post, Body, HttpCode, HttpStatus, InternalServerErrorException } from "@nestjs/common";
 import { UserManagementService } from './user.management.service';
 import { UesrManagementDto } from './user.management.dto';
 import { UserManagementEntity } from './user.management.entity';
@@ -12,7 +12,7 @@ export class UserManagementController {
     try {
         return await this.userManagementService.createAddUser(userDto);
     } catch (err) {
-        HttpStatus.INTERNAL_SERVER_ERROR;
+        throw new InternalServerErrorException('Failed to add user');
       }
   }
 }
