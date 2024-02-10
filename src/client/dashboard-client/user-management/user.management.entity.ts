@@ -30,7 +30,7 @@ export class UserManagementEntity {
   @Column({ type: "enum", enum: RegistrationStatusUser, nullable: true })
   registrationStatus: RegistrationStatusUser;
 
-  @Column("varchar", { array: true })
+  @Column("varchar", { array: true , nullable:true })
   programs: string[];
 
   @Column({ type: "date", nullable: true })
