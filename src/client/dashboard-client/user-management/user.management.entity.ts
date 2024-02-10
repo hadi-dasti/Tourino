@@ -21,7 +21,7 @@ export class UserManagementEntity {
   @Column()
   nationalCode: string;
 
-  @Column("text", { array: true, nullable: true })
+  @Column("varchar", { array: true, nullable: true })
   province: string[];
 
   @Column({ type: "enum", enum: GenderUser, nullable: true })
@@ -30,7 +30,7 @@ export class UserManagementEntity {
   @Column({ type: "enum", enum: RegistrationStatusUser, nullable: true })
   registrationStatus: RegistrationStatusUser;
 
-  @Column("text", { array: true })
+  @Column("varchar", { array: true })
   programs: string[];
 
   @Column({ type: "date", nullable: true })
