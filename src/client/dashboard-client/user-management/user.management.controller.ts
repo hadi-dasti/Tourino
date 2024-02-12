@@ -50,8 +50,8 @@ export class UserManagementController {
     }
   }
 
-  @Delete("/delete-users")
-  async deleteUser(@Param("id") id: string): Promise<void> {
+  @Delete("/delete-user/:id")
+  async deleteUser(@Param('id') id: string): Promise<void> {
     try {
       return await this.userManagementService.deleteUserById(id);
     } catch (err) {
