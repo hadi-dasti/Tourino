@@ -82,7 +82,10 @@ export class UserManagementService {
   }
 
   //update user of client
-  public async updateManagementUser(id: string,userDto: UserManagementDto): Promise<UserManagementEntity | any> {
+  public async updateManagementUser(
+    id: string,
+    userDto: UserManagementDto,
+  ): Promise<UserManagementEntity | any> {
     try {
       const {
         name,
@@ -104,29 +107,52 @@ export class UserManagementService {
         throw new Error(`user wwit ${id} not Found`);
       }
 
-        const updatedUser = await this.userManagementRepository
-            .createQueryBuilder()
-            .update(UserManagementEntity)
-            .set({
-                name,
-                lastName,
-                situation,
-                paymentAmount,
-                nationalCode,
-                programs,
-                province,
-                gender,
-                registrationStatus,
-            })
-            .where({id })
-            .execute();
-        
+      const updatedUser = await this.userManagementRepository
+        .createQueryBuilder()
+        .update(UserManagementEntity)
+        .set({
+          name,
+          lastName,
+          situation,
+          paymentAmount,
+          nationalCode,
+          programs,
+          province,
+          gender,
+          registrationStatus,
+        })
+        .where({ id })
+        .execute();
+
       if (updatedUser.affected === 0) {
-          throw new Error(`Failed to update user with ID ${id}`);
+        throw new Error(`Failed to update user with ID ${id}`);
       }
-        return updatedUser;
+      return updatedUser;
     } catch (err) {
-        throw new Error(`Failed to update user: ${err.message}`);
+      throw new Error(`Failed to update user: ${err.message}`);
+    }
+  }
+
+  //
+  public async deleteUserById(id: string): Promise<void> {
+    try {
+      const existingUser = await this.userManagementRepository.findOneBy({ id });
+      if (!existingUser) {
+          throw new Error(`User with id ${id} not found`);
+        }
+        
+      const deleteUser = await this.userManagementRepository
+        .createQueryBuilder()
+        .delete()
+        .from(UserManagementEntity)
+        .where({ id })
+        .execute();
+
+      if (deleteUser.affected === 1) {
+        console.log("User deleted successfully");
+      }
+    } catch (err) {
+      throw new Error(`Failed to delete user: ${err.message}`);
     }
   }
 }
