@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserManagementEntity } from './../user-management/user.management.entity';
 
 // Enum for the possible values of fieldStatus
 export enum ProgramStatus {
@@ -18,7 +19,7 @@ export class ProgramManagementEntity {
   @Column()
   programTime: string;
 
-  @Column({ type: 'enum', enum: ProgramStatus })
+  @Column({ type: "enum", enum: ProgramStatus })
   programStatus: ProgramStatus;
 
   @Column()
@@ -33,7 +34,11 @@ export class ProgramManagementEntity {
   @Column()
   operationIcons: string;
 
-  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @ManyToMany(() => UserManagementEntity)
+  @JoinTable()
+  registerUsers: UserManagementEntity[];
+
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   programManagementDate: Date;
 }
 

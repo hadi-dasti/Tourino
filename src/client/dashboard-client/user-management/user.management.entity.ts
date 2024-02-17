@@ -36,6 +36,7 @@ export class UserManagementEntity {
   @Column({ type: "date", nullable: true })
   dateOfBirth: Date;
 
+
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   registeryUser: Date;
 }
